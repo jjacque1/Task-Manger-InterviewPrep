@@ -1,28 +1,29 @@
 import { useState } from "react"
+import TaskForm from "./components/TaskForm"
 
 const STATUS = {
   PENDING: "pending",
   In_PROGRESS: "in-progress",
-  Done : "done", 
+  DONE : "done", 
 }
 
-function addTask(title) {
+export default function App() {
+
+  const [Tasks, setTasks] = useState([])
+
+  function addTask(title) {
   const newTask = {
     id: Date.now(),
     title: title,
     status : STATUS.PENDING,
   }
 
-  setTasks((prevTask) => [...prevTask, newTask])
+  setTasks((prevTasks) => [...prevTasks, newTask])
 }
-
-export default function App() {
-
-  const [tasks, setTasks] = useState([])
 
   return (
     <div>
-      <h1>Task manager App</h1>
+      <TaskForm></TaskForm>
     </div>
   )
 }
